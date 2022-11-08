@@ -7,4 +7,4 @@ This is OpenSourceSoftware lecture termproject repository.
 자동화시스템은 로봇의 자동화 작업이 주목적이지만, 이를 오픈소스를 통한 영상처리를 이용하여 사람과의 상호작용을 통한 제어를 한다면 재미있는 작업을 할 수 있을 것이라 생각이 들었습니다.   
 따라서 다양한 손의 모션을 바탕으로 원격으로 로봇의 움직임, 커피 제조 작업 등 다양한 작업을 제어해보고자 합니다.
 
-참고할 오픈소스링크:https://www.youtube.com/watch?v=CJSobYHYDo4&t=13s   
+참고할 오픈소스링크:https://google.github.io/mediapipe/solutions/hands.html
