@@ -12,9 +12,33 @@ void loop() {
     cmd = Serial.read();
 
     if(cmd=='S'){
-      Serial.println("Arduino: Stop Motor");
+      Serial.println("Stop Motor");
       digitalWrite(LED_BUILTIN, HIGH);
-      delay(1000);
+      delay(5000);
+    }
+
+    if(cmd=='O'){
+      Serial.println("User Finded");
+      digitalWrite(LED_BUILTIN, HIGH);
+      delay(5000);
+    }
+      
+    if(cmd=='A'){
+      Serial.println("You order Half shot");
+      digitalWrite(LED_BUILTIN, HIGH);
+      delay(2000);
+    }
+      
+    if(cmd=='B'){
+      Serial.println("You order One shot");
+      digitalWrite(LED_BUILTIN, HIGH);
+      delay(2000);
+    }
+      
+    if(cmd=='C'){
+      Serial.println("You order Two shot");
+      digitalWrite(LED_BUILTIN, HIGH);
+      delay(2000);
     }
   }
 }
