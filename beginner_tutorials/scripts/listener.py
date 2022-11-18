@@ -28,7 +28,7 @@ def callback(data):
             py_serial.write(command.encode())
             time.sleep(0.1)
 
-            
+
 
 def listener():
 
@@ -41,9 +41,10 @@ def listener():
 
     rospy.Subscriber('unity/home', Int32, callback)
     rospy.Subscriber('unity/order', Int32, callback)
+    rospy.Subscriber('unity/making', Int32, callback)
+    rospy.Subscriber('unity/finish', Int32, callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
-
 
 
 if __name__ == '__main__':
