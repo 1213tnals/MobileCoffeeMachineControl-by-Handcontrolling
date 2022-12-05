@@ -49,19 +49,19 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate messages in the 'msg' folder
 add_message_files(
-  DIRECTORY
-  msg
-  FILES
+#  DIRECTORY
+#  msg
+#  FILES
   ##Num.msg
 )
 
 ## Generate services in the 'srv' folder
-add_service_files(
-  DIRECTORY
-  srv
-  FILES
+#add_service_files(
+#  DIRECTORY
+#  srv
+#  FILES
 ##AddTwoInts.srv
-)
+#)
 
 ## Generate actions in the 'action' folder
 # add_action_files(

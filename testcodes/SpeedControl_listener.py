@@ -5,19 +5,11 @@ from std_msgs.msg import Int32
 
 py_serial = serial.Serial(port='/dev/ttyUSB0', baudrate=9600,)
 
-def callbackSpeed(data):
-    rospy.loginfo('I received Speed: %d', data.data)
+def callback(data):
+    rospy.loginfo('I received %d', data.data)
 
     py_serial.write(data.data.encode())
     time.sleep(0.1)
-
-
-def callbackAngle(data):
-    rospy.loginfo('I received Angle: %d', data.data)
-
-    py_serial.write(data.data.encode())
-    time.sleep(0.1)
-
 
 def listener():
 
@@ -28,8 +20,7 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber('User/Hand_Speed', Int32, callbackSpeed)
-    rospy.Subscriber('User/Hand_Angle', Int32, callbackAngle)
+    rospy.Subscriber('User/Hand', Int32, callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
