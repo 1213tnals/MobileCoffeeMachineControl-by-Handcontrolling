@@ -71,7 +71,7 @@ with mp_hands.Hands(
                 speed = int(diff * 1000) + 30  #볼륨을 정의, 미디어 파이프는 이미지에 대해서 0~0.xx~1의 퍼센트로 반환함
                                           #1000은 튜닝할 값
 
-                angle = calculate_angle(finger_first_2D, finger_second_2D)
+                angle = int(calculate_angle(finger_first_2D, finger_second_2D))
 
                 pub_speed.publish(speed)
                 pub_angle.publish(angle)                          
