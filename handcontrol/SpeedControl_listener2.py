@@ -20,7 +20,8 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber('User/Hand', Int32, callback)
+    rospy.Subscriber('User/Hand_Speed', Int32, callback)
+    rospy.Subscriber('User/Hand_Angle', Int32, callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
