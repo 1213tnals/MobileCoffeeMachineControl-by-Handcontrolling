@@ -4,29 +4,23 @@ import time
 from std_msgs.msg import Int32
 
 py_serial = serial.Serial(port='/dev/ttyUSB0', baudrate=9600,)
+command = "Z"
 
 def callback(data):
     rospy.loginfo('I received %d', data.data)
 
-    if(data.data==1):                                                        # !!!!!
-            #command = "F"
-            py_serial.write(data.data.encode())
-            time.sleep(0.1)
+    #py_serial.write(data.data)
+    #time.sleep(0.1)
 
-    if(data.data==2):                                                        # !!!!!
-            #command = "B"
-            py_serial.write(data.data.encode())
-            time.sleep(0.1)
-
-    if(data.data==3):                                                        # !!!!!
-            #command = "L"
-            py_serial.write(data.data.encode())
-            time.sleep(0.1)
-
-    if(data.data==4):                                                        # !!!!!
-            #command = "R"
-            py_serial.write(data.data.encode())
-            time.sleep(0.1)
+    if(data.data<=60):                                                        # !!!!!
+        command = "A"
+        py_serial.write(command.encode())
+    elif(data.data<=80):                                                        # !!!!!
+        command = "B"
+        py_serial.write(command.encode())
+    else:                                                        # !!!!!
+        command = "C"    
+        py_serial.write(command.encode())
 
 
 

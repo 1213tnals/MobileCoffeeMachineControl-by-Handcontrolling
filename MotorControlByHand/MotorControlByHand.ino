@@ -3,7 +3,8 @@
 #define DIR2 4
 #define PWM2 5  //Driving motors
 
-int speed;
+char speed_sub = 'Z';
+int speed_int = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -18,14 +19,23 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(Serial.available()){
-    speed = Serial.read();
+  if (Serial.available()) {
+    speed_sub = Serial.read();
 
+    if (speed_sub == 'A') {
+      speed_int = 60;
+    }
+    else if (speed_sub == 'B') {
+      speed_int = 80;
+    }
+    else if (speed_sub == 'C') {
+      speed_int = 100;
+    }
     digitalWrite(DIR1, HIGH);
-    analogWrite(PWM1, speed);
+    analogWrite(PWM1, speed_int);
     digitalWrite(DIR2, HIGH);
-    analogWrite(PWM2, speed);
+    analogWrite(PWM2, speed_int);
     Serial.print("motor_speed");
-    Serial.println(speed);
+    Serial.println(speed_int);
   }
 }
