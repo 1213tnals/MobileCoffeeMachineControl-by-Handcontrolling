@@ -166,6 +166,8 @@ catkin_install_python(
 	scripts/SpeedControl_listener.py
 	scripts/SpeedControl_talker2.py
 	scripts/SpeedControl_listener2.py
+	scripts/SpeedControl_talker3.py
+	scripts/SpeedControl_listener3.py
 	##scripts/add_two_ints_server.py
 	##scripts/add_two_ints_client.py
   	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
