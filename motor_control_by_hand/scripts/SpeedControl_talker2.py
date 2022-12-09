@@ -27,10 +27,10 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
-pub_speed = rospy.Publisher('User/Hand_Speed', Int32, queue_size=10)
-#pub_angle = rospy.Publisher('User/Hand_Angle', Int32, queue_size=10)
+pub_speed = rospy.Publisher('User/Hand_Speed', Int32, queue_size=1)
+pub_angle = rospy.Publisher('User/Hand_Angle', Int32, queue_size=1)
 rospy.init_node('talker', anonymous=True)
-rate = rospy.Rate(10) # 10hz
+rate = rospy.Rate(1) # 10hz
 
 cap = cv2.VideoCapture(0)
 
@@ -74,7 +74,8 @@ with mp_hands.Hands(
                 angle = int(calculate_angle(finger_first_2D, finger_second_2D))
 
                 pub_speed.publish(speed)
-                #pub_angle.publish(angle)                          
+                pub_angle.publish(angle)
+                time.sleep(0.01)                          
                 
                 cv2.putText(
                     image, text='motor speed: %d' % speed, org=(10,30),

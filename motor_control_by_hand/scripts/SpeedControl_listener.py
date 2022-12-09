@@ -4,13 +4,13 @@ import time
 from std_msgs.msg import Int32
 
 py_serial = serial.Serial(port='/dev/ttyUSB0', baudrate=9600,)
-command = "Z"
 
 def callback(data):
     rospy.loginfo('I received %d', data.data)
 
     #py_serial.write(data.data)
     #time.sleep(0.1)
+    command = "Z"
 
     if(data.data<=60):                                                        # !!!!!
         command = "A"
