@@ -1,7 +1,17 @@
+/////Driving motor PWM
 #define DIR1 2
 #define PWM1 3
 #define DIR2 4
-#define PWM2 5  //Driving motors
+#define PWM2 5
+
+/////Water pump PWM
+#define M1_pinNum_1  46
+#define M1_pinNum_2  47
+#define M1_SpeedPin  48
+
+#define M2_pinNum_1  49
+#define M2_pinNum_2  50
+#define M2_SpeedPin  51
 
 char mode_sub = 'Z';
 int left_speed_int = 0;
@@ -44,19 +54,27 @@ void loop() {
         mode_sub = Serial.read();
 
         if (mode_sub == 'A')        
-        {       
+        {
+          digitalWrite(M1_pinNum_1, LOW);
+          digitalWrite(M1_pinNum_2, HIGH);
+          analogWrite(M1_SpeedPin, 200);
+          delay(200);
+          digitalWrite(M2_pinNum_1, LOW);
+          digitalWrite(M2_pinNum_2, HIGH);
+          analogWrite(M2_SpeedPin, 200);
+          delay(200);
+          digitalWrite(M1_pinNum_1, LOW);
+          digitalWrite(M1_pinNum_2, LOW);
+          analogWrite(M1_SpeedPin, 0);
+          delay(200);
+          digitalWrite(M2_pinNum_1, LOW);
+          digitalWrite(M2_pinNum_2, LOW);
+          analogWrite(M2_SpeedPin, 0);
+          delay(200);
+          
           Serial.println("shot1");          
           delay(2000);
-        }
-        else if (mode_sub == 'B')        
-        {       
-          Serial.println("shot2");          
-          delay(2000);
-        }
-        else if (mode_sub == 'C')        
-        {       
-          Serial.println("shot3");          
-          delay(2000);
+          break;
         }
       }
     }
