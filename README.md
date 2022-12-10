@@ -35,7 +35,7 @@ This is OpenSourceSoftware lecture termproject repository.
 [ROS(Robot Operating System)](https://www.ros.org/)은 로봇을 작동하기 편한 환경을 제공하는 툴입니다. 우분투 버전별로 사용가능한 ROS 버전이 다르므로 (noetic-ubuntu20.04, melodic-ubuntu18.04,...) 위의 하이퍼링크를 통해서 사용법을 자세히 확인한 후 ROS가 설치된 환경에서 작동시켜주시기 바랍니다. 작동만 해보실 분들은 위의 링크에서 튜토리얼의 첫번째 과정인 'ROS 설치"만 진행하셔도 됩니다.
    
    
-### 3. ROS 환경구성   
+### 3. ROS 환경구성
 ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송신하는 측(이 리포지토리에서 motor_control_by_hand/talker*.py), 데이터를 수신하는 측(이 리포지토리에서 motor_control_by_hand/listener*.py)이 서로 송수신하기 위해서는 같은 IP를 공유하고 있어야 합니다. 같은 IP 내에 접속해있는 데이터 송신측과 수신측은 하나의 roscore가 실행되어있는 환경에서 데이터의 송수신이 가능합니다. 따라서 .bashrc에 접근을 하여 roscore가 실행되어있는 곳의 ip주소를 마스터로 지정해주시기 바랍니다.(명령어: sudo apt install net-tools 를 통해서 ifconfig를 사용할 수 있습니다.)   
 패키지를 위한 cmakelist, pakage.xml이 리포지토리 내에 생성이 되어있습니다. 이 패키지를 빌드하기 위해서 명령어: catkin_make를 사용하시거나 catkin tool을 추가적으로 설치하여 catkin build로 패키지를 빌드해주시기 바랍니다. 빌드가 되었다면 터미널에서 motor_control_by_hand 라는 패키지가 생성되었다고 알림이 뜨게 됩니다.   
    
