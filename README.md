@@ -4,46 +4,58 @@ This is OpenSourceSoftware lecture termproject repository.
 ![MobileCoffeeMachine](images/forReadMe/MobileCoffeeMachine.png)   
 자동화시스템 수업 발표를 위해 이동형 커피 자판기 로봇(모바일 로봇)을 제작하였습니다.   
    
+
 위의 이미지와 같이 생긴 모바일 로봇으로 라인트래킹, PID제어를 통한 장애물 회피를 하여 이용자에게 찾아가면 이용자는 로봇의 상부에 위치한 화면에 표시되는 GUI를 통해서 원하는 커피를 주문, 받을 수 있도록 제작을 하였습니다.   
 자동화시스템은 로봇의 자동화 작업이 주목적이지만, 이 로봇을 오픈소스를 통한 영상처리를 이용하여 사람과의 상호작용을 통한 제어를 한다면 재미있는 작업을 할 수 있을 것이라 생각이 들어 로봇만 가져와 내부 제어 코드를 바꾸어 로봇을 제어하는 코드를 작성하였습니다.   
+   
 
 이 리포지토리에서는 손의 다양한 모션을 바탕으로 원격으로 모바일 로봇에 신호를 보내어 속도를 제어, 방향을 제어, 커피 제조 작업할 수 있습니다.   
 영상에서 나온 것처럼 로봇을 원격으로 제어하기 위해서는 컴퓨터에 로봇을 직접적으로 연결하지 말고 처리를 하는 다른 컴퓨터나 jetson Nano와 같은 보드를 사용하셔야 합니다. 저는 원격 자동화로봇을 위해서 로봇이 jetson Nano와 연결이 되어있기 때문에 컴퓨터로 mediapipe의 결과 데이터를 ROS를 통해서 젯슨으로 송신하는 환경에서 진행하였습니다.)   
    
+   
 이 코드를 사용하기 위해서 필요한 사전 작업들   
-- 우분투 환경에서 작동할 수 있는 ros패키지가 생성되어있으므로 ROS가 설치된 우분투가 필요(VMware, VirtualBox 등)   
+- 우분투 환경에서 작동할 수 있는 ros 패키지 생성을 파일이 있으므로 ROS가 설치된 우분투가 필요(VMware, VirtualBox 등)   
 - python3에 opencv, mediapipe, pyserial, git 설치   
 - arduino 설치   
    
    
+
 ## 사용방법
 ### 1. 우분투 환경구성
 이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
    
+
 ### 2. ROS 설치   
 윈도우 환경을 이용하시는 분들은 ROS가 설치될 우분투 os를 사용하기 위해서 VMware, VirtualBox 등을 사용해주시기 바랍니다.   
    
+
 [ROS(Robot Operating System)](https://www.ros.org/)은 로봇을 작동하기 편한 환경을 제공하는 툴입니다. 우분투 버전별로 사용가능한 ROS 버전이 다르므로 (noetic-ubuntu20.04, melodic-ubuntu18.04,...) 위의 하이퍼링크를 통해서 사용법을 자세히 확인한 후 ROS가 설치된 환경에서 작동시켜주시기 바랍니다. 작동만 해보실 분들은 위의 링크에서 튜토리얼의 첫번째 과정인 'ROS 설치"만 진행하셔도 됩니다.
+   
    
 ### 3. ROS 환경구성   
 ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송신하는 측(이 리포지토리에서 motor_control_by_hand/talker*.py), 데이터를 수신하는 측(이 리포지토리에서 motor_control_by_hand/listener*.py)이 서로 송수신하기 위해서는 같은 IP를 공유하고 있어야 합니다. 같은 IP 내에 접속해있는 데이터 송신측과 수신측은 하나의 roscore가 실행되어있는 환경에서 데이터의 송수신이 가능합니다. 따라서 .bashrc에 접근을 하여 roscore가 실행되어있는 곳의 ip주소를 마스터로 지정해주시기 바랍니다.(명령어: sudo apt install net-tools 를 통해서 ifconfig를 사용할 수 있습니다.)   
 패키지를 위한 cmakelist, pakage.xml이 리포지토리 내에 생성이 되어있습니다. 이 패키지를 빌드하기 위해서 명령어: catkin_make를 사용하시거나 catkin tool을 추가적으로 설치하여 catkin build로 패키지를 빌드해주시기 바랍니다. 빌드가 되었다면 터미널에서 motor_control_by_hand 라는 패키지가 생성되었다고 알림이 뜨게 됩니다.   
    
+
 ### 4. 아두이노   
 수신측에 아두이노를 물려주시기 바랍니다. MotorControlByHand* 파일을 아두이노로 업로드를 진행해주시기 바랍니다. 아두이노를 연결할 때 포트의 정보를 확인하시고 포트가 "dev/ttyUSB0"인지 확인해주시기 바랍니다. 혹시 이와 다르다면 motor_control_by_hand/talker*.py, motor_control_by_hand/listener*.py 코드에서 포트의 번호를 바꾸어주시기 바랍니다.
+   
 
 ### 5. ROS 패키지 사용   
 터미널을 열어주셔서 catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling 으로 이동해주시기 바랍니다.(명령어: catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling) 이후 송신측과 수신측은 아래의 설명에 따라 코드 실행을 진행해주시기 바랍니다.
+   
 
 #### 1)송신측(영상처리부)   
 명령어: rosrun motor_control_by_hand SpeedControl_talker*.py   
 #### 2)수신측(로봇제어부)   
 명령어: rosrun motor_control_by_hand SpeedControl_listener*.py   
+   
 
 로봇은 속도 제어에서 빠름/중간/느림, 방향 제어에서 좌/직진/우, 모드 제어에서 멈춤,음료뽑기/이동 으로 여러 모드로 구성되어있습니다.   
 엄지와 검지 사이 거리를 통해서 속도를 제어, 엄지와 검지가 만드는 임의의 직선이 1 방향과 이루는 각도를 통해서 방향제어, 손의 전제척인 모습(접었을 경우-S 정지, 폈을 경우-R 이동, 손가락으로-A ok를 만든다면 음료를 제작)으로 제어가 가능합니다.   
    
-
+   
+   
 ## 고려한 사항
 - 로봇의 속도가 갑작스럽게 바뀌는 것을 방지를 하기 위해서 데이터를 5번 받고 평균을 내어 그 값을 기준으로 처리가 진행되도록 함   
 - 토픽의 송수신이 일어나는 속도에 비해서 아두이노가 데이터를 송수신하는 속도가 현저히 낮아 데이터를 바로 처리하지 않고 일정 범위 내에 있는 동안에는 값이 갑작스럽게 바뀌지 않도록 함, 파이썬에서 아두이노로 보내지는 데이터는 최대한 단순화된 데이터를 보내도록 함, 토픽이 송수신이 일어나는 과정에서 송신측에서가 토픽을 보내는 중간에 delay가 있도록 함.(time.sleep)
