@@ -84,7 +84,7 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
 1. 통신 및 영상처리코드(listener3, talker3)   
       
     1.1 **talker3**   
-    ![talker]](images/forReadMe/talker.png)   
+    ![talker](images/forReadMe/talker.png)   
     pub_speed = rospy.Publisher('User/Hand_Speed', Int32, queue_size=1)에서 첫 파라미터는 토픽의 이름, 두 번째 파라미터는 자료형을 의미합니다. 수신측에서도 이에 맞는 토픽 이름, 자료형이어야지 수신받을 수 있습니다.   
     landmark[4], [8]은 엄지와 검지에 해당하는 값입니다. 이 두 값을 통해서 로봇을 제어할 Speed와 Angle을 구합니다. 
     Speed의 경우 점과 점 사이거리를 통해서, Angle의 경우 두 점 사이의 임의의 직선과 전방으로 뻗는 직선이 이루는 각을 통해서 구합니다.  
@@ -92,7 +92,7 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
    
       
     1.2 **listener3**   
-    ![listener]](images/forReadMe/listener.png)   
+    ![listener](images/forReadMe/listener.png)   
     rospy.Subscriber('User/Hand_Speed', Int32, callbackSpeed)에서 처음과 두번째 파라미터는 송신부와 일치해야합니다. 세번째 파라미터는 콜백함수로 토픽이 들어왔을 때 작동할 함수를 지정합니다.   
     callbackSpeed, callbackAngle, callbackMode는 각각 콜백함수이며 talker3로부터 온 데이터의 내용을 조건문에 따라 아두이노로 Serial 통신을 통해서 보낼 데이터를 선택해줍니다.   
    
