@@ -143,3 +143,10 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
 이전부터 컴퓨터 비전쪽에 관심을 가지고 있었고, 최근 로봇분야로 배우기 시작하면서 오픈소스 텀프로젝트를 진행할 때 로봇을 다루기로 해보았음. 자동화시스템 수업을 진행하며 로봇을 제작하고 있었기 때문에 팀원에게 물어보고 자동화시스템 로봇을 제어를 하게 됨. yolov5를 사용하고자 하였으나 로봇의 영상처리와 중앙처리를 위한 보드인 jetson Nano가 처리하는데 시간이 오래 걸리는 관계로 mediapipe를 사용함. **rosserial이 있음**을 모르고 ros와 pyserial을 따로 다룬 이유에서인지 최종 결과에서 영상처리 결과가 약 3초 후 아두이노의 신호로 입력됨을 확인함.   
    
 중앙처리보드를 jetson Nano로 사용, rosserial이 아닌 ros+pyserial의 사용, rostopic이 보내지는 속도와 데이터 갯수에 비해 느린 아두이노의 처리속도 등이 딜레이의 원인이라고 판단된다.   
+   
+### 참고한 오픈소스   
+라이선스: Apache License Version 2.0
+https://github.com/google/mediapipe   
+https://github.com/kairess/Rock-Paper-Scissors-Machine   
+http://wiki.ros.org/ROS/Tutorials/CreatingPackage   
+http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29   
