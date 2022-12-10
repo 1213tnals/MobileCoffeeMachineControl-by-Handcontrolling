@@ -24,7 +24,7 @@ This is OpenSourceSoftware lecture termproject repository.
 ## 사용방법
 ### 1. 우분투 환경구성
 ![VMware](images/forReadMe/VMware.png)   
-이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
+        이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
    
 
 ### 2. ROS 설치   
