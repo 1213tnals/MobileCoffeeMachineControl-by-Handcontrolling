@@ -65,10 +65,10 @@ ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송
 ![communication](images/forReadMe/communication.png)   
    
 
-#### 1)송신측(영상처리부)   
+#### 1) 송신측(영상처리부)   
 명령어: ***rosrun motor_control_by_hand SpeedControl_talker*.py***   
    
-#### 2)수신측(로봇제어부)   
+#### 2) 수신측(로봇제어부)   
 명령어: ***rosrun motor_control_by_hand SpeedControl_listener*.py***   
    
    
