@@ -84,6 +84,8 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
 1. 통신 및 영상처리코드(listener3, talker3)   
       
     1.1 **talker3**   
+    조작 아이디어   
+    ![controlIdea](images/forReadMe/controlIdea.png)  
     ![talker](images/forReadMe/talker.png)   
     pub_speed = rospy.Publisher('User/Hand_Speed', Int32, queue_size=1)에서 첫 파라미터는 토픽의 이름, 두 번째 파라미터는 자료형을 의미합니다. 수신측에서도 이에 맞는 토픽 이름, 자료형이어야지 수신받을 수 있습니다.   
     landmark[4], [8]은 엄지와 검지에 해당하는 값입니다. 이 두 값을 통해서 로봇을 제어할 Speed와 Angle을 구합니다. 
@@ -124,17 +126,16 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
 ### 사용 이미지   
 사용하는 과정 이미지들 첨부예정   
    
-### 1. SpeedControl_listener1.py, SpeedControl_talker1.py   
-속도 제어만 들어있는 패키지   
-gif 이미지 첨부예정   
+### 1. ROS-TCP, Serial을 통한 통신 확인   
    
-### 2. SpeedControl_listener2.py, SpeedControl_talker2.py   
-속도, 방향 제어가 들어있는 패키지   
-gif 이미지 첨부예정   
+0.1. 영상처리 데이터 송신부의 이미지 영상, 수신부인 젯슨의 roslog창, Serial 데이터의 수신부인 아두이노의 시리얼 모니터
+![Serial_test](images/forReadMe/Serial_test.gif)
    
-### 3. SpeedControl_listener3.py, SpeedControl_talker3.py   
-속도, 방향, 음료 제작/모드 전환 제어가 들어있는 패키지   
-gif 이미지 첨부예정   
+0.2. 각도 제어와 모드 제어가 추가된 talker의 화면   
+![monitor](images/forReadMe/monitor.gif)   
+   
 
-### 전체 작동과정 영상   
-유튜브 링크 첨부예정   
+### 2. 실제 로봇의 작동(최종 작동은 SpeedControl_listener3.py, SpeedControl_talker3.py 기반)   
+![listener_talker3_2](images/forReadMe/listener_talker3_2.gif)  
+[유튜브를 통해서 작동 전체 영상보기](https://youtu.be/X5AGYDIpELk)   
+최종작동영상 타임라인: 03:48~
