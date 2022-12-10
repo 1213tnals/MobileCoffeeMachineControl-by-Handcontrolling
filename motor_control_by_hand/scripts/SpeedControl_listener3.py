@@ -51,10 +51,13 @@ def callbackMode(data):
 
     if(data.data == 0):                                       
         Mode_command = "S"                                   #stop
+        py_serial.write(Mode_command.encode())
     elif(data.data == 5):                                                    
         Mode_command = "R"                                   #run
+        py_serial.write(Mode_command.encode())
     elif(data.data == 10):
         Mode_command = "A"                                   #coffee make
+        py_serial.write(Mode_command.encode())
     
     else:
         if(Angle_command == "D"):                               
