@@ -98,7 +98,7 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
    
    
 2. 모터제어부(**MotorControlByHand_3**)   
-    ![arduino_code]](images/forReadMe/arduino_code.png)  
+    ![arduino_code](images/forReadMe/arduino_code.png)  
     lister3을 통해서 시리얼로 받은 값을 바탕으로 처리를 진행합니다.   
     정지(S) 중일 때는 음료 제작(A)이나 이동(R)의 값을 기다립니다.   
     이동(R) 중일 때는 이동에 관한 값(D~L)을 기다립니다.   
