@@ -66,10 +66,10 @@ ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송
    
 
 #### 1) 송신측(영상처리부)   
-명령어: **rosrun motor_control_by_hand SpeedControl_talker*.py**  
+명령어: ***rosrun motor_control_by_hand SpeedControl_talker .py***  
    
 #### 2) 수신측(로봇제어부)   
-명령어: **rosrun motor_control_by_hand SpeedControl_listener*.py**  
+명령어: ***rosrun motor_control_by_hand SpeedControl_listener .py***  
    
    
 로봇은 속도 제어에서 빠름/중간/느림, 방향 제어에서 좌/직진/우, 모드 제어에서 멈춤,음료 제작/이동 으로 여러 모드로 구성되어있습니다.   
@@ -123,9 +123,6 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
    
 
 ## 작업물 결과   
-### 사용 이미지   
-사용하는 과정 이미지들 첨부예정   
-   
 ### 1. ROS-TCP, Serial을 통한 통신 확인   
    
 0.1. 영상처리 데이터 송신부의 이미지 영상, 수신부인 젯슨의 roslog창, Serial 데이터의 수신부인 아두이노의 시리얼 모니터
