@@ -145,7 +145,7 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
 중앙처리보드를 jetson Nano로 사용, rosserial이 아닌 ros+pyserial의 사용, rostopic이 보내지는 속도와 데이터 갯수에 비해 느린 아두이노의 처리속도 등이 딜레이의 원인이라고 판단된다.   
    
 ### 참고한 오픈소스   
-라이선스: Apache License Version 2.0
+라이선스: Apache License Version 2.0   
 https://github.com/google/mediapipe   
 https://github.com/kairess/Rock-Paper-Scissors-Machine   
 http://wiki.ros.org/ROS/Tutorials/CreatingPackage   
