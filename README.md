@@ -22,10 +22,12 @@ This is OpenSourceSoftware lecture termproject repository.
 
 ## 사용방법
 ### 1. 우분투 환경구성
+![VMware](images/forReadMe/VMware.png)   
 이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
    
 
 ### 2. ROS 설치   
+![VMware](images/forReadMe/ros.png)
 윈도우 환경을 이용하시는 분들은 ROS가 설치될 우분투 os를 사용하기 위해서 VMware, VirtualBox 등을 사용해주시기 바랍니다.   
    
 
@@ -44,7 +46,8 @@ ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송
 ### 5. ROS 패키지 사용   
 터미널을 열어주셔서 catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling 으로 이동해주시기 바랍니다.(명령어: catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling) 이후 송신측과 수신측은 아래의 설명에 따라 코드 실행을 진행해주시기 바랍니다.
    
-
+   
+![nodegraph](images/forReadMe/rosgraph.png)   
 #### 1)송신측(영상처리부)   
 명령어: rosrun motor_control_by_hand SpeedControl_talker*.py   
 #### 2)수신측(로봇제어부)   
@@ -55,10 +58,16 @@ ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송
 엄지와 검지 사이 거리를 통해서 속도를 제어, 엄지와 검지가 만드는 임의의 직선이 1 방향과 이루는 각도를 통해서 방향제어, 손의 전제척인 모습(접었을 경우-S 정지, 폈을 경우-R 이동, 손가락으로-A ok를 만든다면 음료를 제작)으로 제어가 가능합니다.   
    
    
-   
-## 고려한 사항
+
+## 고려한 사항 및 사용에 유용한 정보
 - 로봇의 속도가 갑작스럽게 바뀌는 것을 방지를 하기 위해서 데이터를 5번 받고 평균을 내어 그 값을 기준으로 처리가 진행되도록 함   
 - 토픽의 송수신이 일어나는 속도에 비해서 아두이노가 데이터를 송수신하는 속도가 현저히 낮아 데이터를 바로 처리하지 않고 일정 범위 내에 있는 동안에는 값이 갑작스럽게 바뀌지 않도록 함, 파이썬에서 아두이노로 보내지는 데이터는 최대한 단순화된 데이터를 보내도록 함, 토픽이 송수신이 일어나는 과정에서 송신측에서가 토픽을 보내는 중간에 delay가 있도록 함.(time.sleep)
+- VMware를 사용하는 경우 상단 오른쪽에 있는 카메라를 반드시 킬 것
+- 아두이노가 잡히지 않는다면,   
+명령어: sudo usermod -a -G dialout sumin(사용자이름) 으로 권한 설정,   
+명령어: ls –l /dev/ 로 아두이노가 연결이 됬는지 확인   
+명령어: sudo chmod 666 /dev/ttyUSB0
    
-      
+   
+
 ## 사용결과
