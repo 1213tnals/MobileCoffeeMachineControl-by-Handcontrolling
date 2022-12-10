@@ -24,18 +24,20 @@ This is OpenSourceSoftware lecture termproject repository.
 ## 사용방법
 ### 1. 우분투 환경구성
 ![VMware](images/forReadMe/VMware.png)   
-        이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
+   
+이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
    
 
 ### 2. ROS 설치   
-![VMware](images/forReadMe/ros.png)
+![VMware](images/forReadMe/ros.png)   
+    
 윈도우 환경을 이용하시는 분들은 ROS가 설치될 우분투 os를 사용하기 위해서 VMware, VirtualBox 등을 사용해주시기 바랍니다.   
    
 
 [ROS(Robot Operating System)](https://www.ros.org/)은 로봇을 작동하기 편한 환경을 제공하는 툴입니다. 우분투 버전별로 사용가능한 ROS 버전이 다르므로 (noetic-ubuntu20.04, melodic-ubuntu18.04,...) 위의 하이퍼링크를 통해서 사용법을 자세히 확인한 후 ROS가 설치된 환경에서 작동시켜주시기 바랍니다. 작동만 해보실 분들은 위의 링크에서 튜토리얼의 첫번째 과정인 'ROS 설치"만 진행하셔도 됩니다.
    
    
-### 3. ROS 환경구성
+### 3. ROS 환경구성   
 ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송신하는 측(이 리포지토리에서 motor_control_by_hand/talker*.py), 데이터를 수신하는 측(이 리포지토리에서 motor_control_by_hand/listener*.py)이 서로 송수신하기 위해서는 같은 IP를 공유하고 있어야 합니다. 같은 IP 내에 접속해있는 데이터 송신측과 수신측은 하나의 roscore가 실행되어있는 환경에서 데이터의 송수신이 가능합니다. 따라서 .bashrc에 접근을 하여 roscore가 실행되어있는 곳의 ip주소를 마스터로 지정해주시기 바랍니다.(명령어: sudo apt install net-tools 를 통해서 ifconfig를 사용할 수 있습니다.)   
 패키지를 위한 cmakelist, pakage.xml이 리포지토리 내에 생성이 되어있습니다. 이 패키지를 빌드하기 위해서 명령어: catkin_make를 사용하시거나 catkin tool을 추가적으로 설치하여 catkin build로 패키지를 빌드해주시기 바랍니다. 빌드가 되었다면 터미널에서 motor_control_by_hand 라는 패키지가 생성되었다고 알림이 뜨게 됩니다.   
    
