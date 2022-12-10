@@ -14,14 +14,14 @@
    
    
 이 리포지토리에서는 손의 다양한 모션을 바탕으로 원격으로 모바일 로봇에 신호를 보내어 속도를 제어, 방향을 제어, 커피 제조 작업할 수 있습니다.   
-영상에서 나온 것처럼 로봇을 원격으로 제어하기 위해서는 컴퓨터에 로봇을 직접적으로 연결하지 말고 처리를 하는 다른 컴퓨터나 jetson Nano와 같은 보드를 사용하셔야 합니다. 저는 원격 자동화로봇을 위해서 로봇이 jetson Nano와 연결이 되어있기 때문에 컴퓨터로 mediapipe의 결과 데이터를 ROS를 통해서 젯슨으로 송신하는 환경에서 진행하였습니다.)   
+영상에서 나온 것처럼 로봇을 원격으로 제어하기 위해서는 컴퓨터에 로봇을 직접적으로 연결하지 말고 처리를 하는 다른 컴퓨터나 jetson Nano와 같은 보드를 사용하셔야 합니다. 저는 원격 자동화로봇을 위해서 로봇이 ***jetson Nano***와 연결이 되어있기 때문에 컴퓨터로 mediapipe의 결과 데이터를 ROS를 통해서 젯슨으로 송신하는 환경에서 진행하였습니다.)   
    
    
    
 이 코드를 사용하기 위해서 필요한 사전 작업들   
-- 우분투 환경에서 작동할 수 있는 ros 패키지 생성을 파일이 있으므로 ROS가 설치된 우분투가 필요(VMware, VirtualBox 등)   
-- python3에 opencv, mediapipe, pyserial, git 설치   
-- arduino 설치   
+- 우분투 환경에서 작동할 수 있는 ros 패키지 생성을 파일이 있으므로 **ROS**가 설치된 우분투가 필요(VMware, VirtualBox 등)   
+- python3에 **opencv, mediapipe, pyserial, git** 설치   
+- **arduino** 설치   
    
    
    
@@ -30,7 +30,7 @@
 ### 1. 우분투 환경구성
 ![VMware](images/forReadMe/VMware.png)   
    
-이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: cd)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
+이 리포지토리의 코드들을 사용하기 위해서 우분투 환경을 구성해야합니다. 우분투에 파이썬을 설치를 하고 파이썬에 opencv, mediapipe, pyserial(손 인식 데이터 송신측과 수신측은 ROS-TCP를 통해서 원격으로 이루어지며, 수신측에 물린 아두이노는 Serial통신을 통해서 데이터의 송수신이 일어납니다), git을 설치해주시기 바랍니다. catkin_ws 폴더를 생성, catkin_ws 폴더 내에 src 폴더를 생성하고 이곳으로 이동(명령어: ***cd***)하시기 바랍니다. 이후 git clone으로 이 리포지토리를 다운받으시기 바랍니다.   
    
    
 
@@ -45,8 +45,9 @@
    
 
 ### 3. ROS 환경구성   
-ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송신하는 측(이 리포지토리에서 motor_control_by_hand/talker*.py), 데이터를 수신하는 측(이 리포지토리에서 motor_control_by_hand/listener*.py)이 서로 송수신하기 위해서는 같은 IP를 공유하고 있어야 합니다. 같은 IP 내에 접속해있는 데이터 송신측과 수신측은 하나의 roscore가 실행되어있는 환경에서 데이터의 송수신이 가능합니다. 따라서 .bashrc에 접근을 하여 roscore가 실행되어있는 곳의 ip주소를 마스터로 지정해주시기 바랍니다.(명령어: sudo apt install net-tools 를 통해서 ifconfig를 사용할 수 있습니다.)   
-패키지를 위한 cmakelist, pakage.xml이 리포지토리 내에 생성이 되어있습니다. 이 패키지를 빌드하기 위해서 명령어: catkin_make를 사용하시거나 catkin tool을 추가적으로 설치하여 catkin build로 패키지를 빌드해주시기 바랍니다. 빌드가 되었다면 터미널에서 motor_control_by_hand 라는 패키지가 생성되었다고 알림이 뜨게 됩니다.   
+![catkinbuild](images/forReadMe/catkinbuild.png)   
+ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송신하는 측(이 리포지토리에서 motor_control_by_hand/talker*.py), 데이터를 수신하는 측(이 리포지토리에서 motor_control_by_hand/listener*.py)이 서로 송수신하기 위해서는 같은 IP를 공유하고 있어야 합니다. 같은 IP 내에 접속해있는 데이터 송신측과 수신측은 하나의 roscore가 실행되어있는 환경에서 데이터의 송수신이 가능합니다. 따라서 .bashrc에 접근을 하여 roscore가 실행되어있는 곳의 ip주소를 마스터로 지정해주시기 바랍니다.(명령어: ***sudo apt install net-tools*** 를 통해서 ifconfig를 사용할 수 있습니다.)   
+바로 빌드하여 사용할 수 있도록 패키지를 위한 **CMakeLists.txt, pakage.xml를 만들어 두었습니다.** 이 패키지를 빌드하기 위해서 명령어: ***catkin_make***를 사용하시거나 catkin tool을 추가적으로 설치하여 ***catkin build***로 패키지를 빌드해주시기 바랍니다. 빌드가 되었다면 터미널에서 motor_control_by_hand 라는 패키지가 생성되었다고 알림이 뜨게 됩니다.   
    
    
 
@@ -56,7 +57,7 @@ ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송
 
    
 ### 5. ROS 패키지 사용   
-터미널을 열어주셔서 catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling 으로 이동해주시기 바랍니다.(명령어: catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling) 이후 송신측과 수신측은 아래의 설명에 따라 코드 실행을 진행해주시기 바랍니다.
+터미널을 열어주셔서 catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling 으로 이동해주시기 바랍니다.(명령어: ***catkin_ws/src/MobileCoffeeMachineControl-by-Handcontrolling***) 이후 송신측과 수신측은 아래의 설명에 따라 코드 실행을 진행해주시기 바랍니다.
    
    
 ![nodegraph](images/forReadMe/rosgraph.png)   
@@ -65,10 +66,10 @@ ROS는 토픽을 통해서 데이터를 송수신을 합니다. 데이터를 송
    
 
 #### 1)송신측(영상처리부)   
-명령어: rosrun motor_control_by_hand SpeedControl_talker*.py   
+명령어: ***rosrun motor_control_by_hand SpeedControl_talker*.py***   
    
 #### 2)수신측(로봇제어부)   
-명령어: rosrun motor_control_by_hand SpeedControl_listener*.py   
+명령어: ***rosrun motor_control_by_hand SpeedControl_listener*.py***   
    
    
 로봇은 속도 제어에서 빠름/중간/느림, 방향 제어에서 좌/직진/우, 모드 제어에서 멈춤,음료 제작/이동 으로 여러 모드로 구성되어있습니다.   
@@ -111,9 +112,9 @@ listener1과 talker1, listener2과 talker2, listener3과 talker3 서로 연결�
 - 토픽의 송수신이 일어나는 속도에 비해서 아두이노가 데이터를 송수신하는 속도가 현저히 낮아 데이터를 바로 처리하지 않고 일정 범위 내에 있는 동안에는 값이 갑작스럽게 바뀌지 않도록 함, 파이썬에서 아두이노로 보내지는 데이터는 최대한 단순화된 데이터를 보내도록 함, 토픽이 송수신이 일어나는 과정에서 송신측에서가 토픽을 보내는 중간에 delay가 있도록 함.(time.sleep)
 - VMware를 사용하는 경우 상단 오른쪽에 있는 카메라를 반드시 킬 것
 - 아두이노가 잡히지 않는다면,   
-명령어: sudo usermod -a -G dialout 사용자이름(sumin) 으로 권한 설정,   
-명령어: ls –l /dev/ 로 아두이노가 연결이 됬는지 확인   
-명령어: sudo chmod 666 /dev/ttyUSB0
+명령어: ***sudo usermod -a -G dialout 사용자이름(sumin)*** 으로 권한 설정,   
+명령어: ***ls –l /dev/*** 로 아두이노가 연결이 됬는지 확인   
+명령어: ***sudo chmod 666 /dev/ttyUSB0***
    
    
    
